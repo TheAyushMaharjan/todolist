@@ -2,9 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../constrants/colors.dart';
+import '../model/todo.dart';
 
 class ToDoItem extends StatelessWidget {
-  const ToDoItem({super.key});
+  final ToDo todo;
+
+  const ToDoItem({super.key, required this.todo});
 
   @override
   Widget build(BuildContext context) {
@@ -17,26 +20,29 @@ class ToDoItem extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(24),
         ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
         tileColor: tdYellow,
         leading: Icon(
-          Icons.check_box_rounded,
+          todo.isDone
+              ? Icons.check_box_rounded
+              : Icons.check_box_outline_blank_rounded,
           color: tdBlack,
         ),
         title: Text(
-          'hello',
-          style: TextStyle(fontSize: 18,
-          color: tdBlack,
-          decoration: TextDecoration.lineThrough
+          todo.todoText!,
+          style: TextStyle(
+            fontSize: 18,
+            color: tdBlack,
+            decoration: todo.isDone ? TextDecoration.lineThrough : null,
           ),
         ),
         trailing: Container(
           padding: EdgeInsets.all(0),
           margin: EdgeInsets.symmetric(vertical: 12),
-          height: 35 ,
+          height: 35,
           width: 35,
           decoration: BoxDecoration(
-            color:tdRed,
+            color: tdRed,
             borderRadius: BorderRadius.circular(6),
           ),
           child: IconButton(
@@ -49,7 +55,6 @@ class ToDoItem extends StatelessWidget {
           ),
         ),
       ),
-
     );
   }
 }
