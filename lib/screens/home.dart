@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todolist/widgets/todo_item.dart';
 
 import '../constrants/colors.dart';
 import '../widgets/searchbox.dart';
@@ -36,6 +37,12 @@ class _HomeState extends State<Home> {
                         ),
                     ),
                   ),
+                    ToDoItem(),
+                  ToDoItem(),
+
+                  ToDoItem(),
+
+                  ToDoItem(),
 
 
                 ],
