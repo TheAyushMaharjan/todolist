@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../constrants/colors.dart';
+import '../widgets/searchbox.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -10,6 +13,53 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      backgroundColor: tdLYellow,
+      appBar: _buildAppBar(),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 24,vertical: 24),
+        child: Column(
+          children: [
+            //searchBox
+            searchBox(),
+            //Listview of ToDolist
+            Expanded(
+              child: ListView(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 50,bottom: 20),
+                    child:Text(
+                        'All ToDo List',
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w500
+                        ),
+                    ),
+                  ),
+
+
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  AppBar _buildAppBar() {
+    return AppBar(
+      backgroundColor: tdYellow,
+      elevation: 0,
+      title: Row(
+        children: [
+          Icon(
+            Icons.menu,
+            color: tdBlack,
+          ),
+        ],
+      ),
+    );
   }
 }
+
