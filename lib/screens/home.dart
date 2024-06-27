@@ -23,18 +23,18 @@ class _HomeState extends State<Home> {
       body: Stack(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 24, vertical: 24),
+            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
             child: Column(
               children: [
                 //searchBox
-                searchBox(),
+                const searchBox(),
                 //Listview of ToDolist
                 Expanded(
                   child: ListView(
                     children: [
                       Container(
-                        margin: EdgeInsets.only(top: 50, bottom: 20),
-                        child: Text(
+                        margin: const EdgeInsets.only(top: 50, bottom: 20),
+                        child: const Text(
                           'All ToDo List',
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.w500),
@@ -56,15 +56,15 @@ class _HomeState extends State<Home> {
               children: [
                 Expanded(
                     child: Container(
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     bottom: 20,
                     right: 20,
                     left: 20,
                   ),
-                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
                   decoration: BoxDecoration(
                     color: tdLBlue,
-                    boxShadow:[ BoxShadow(
+                    boxShadow:const [ BoxShadow(
                       color: Colors.grey,
                       offset: Offset(0.0, 0.0),
                       blurRadius: 10,
@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
                     borderRadius: BorderRadius.circular(16),
 
                   ),
-                      child: TextField(
+                      child: const TextField(
                         decoration: InputDecoration(
                           hintText: 'Add new ToDo Item',
                           border: InputBorder.none,
@@ -93,7 +93,7 @@ class _HomeState extends State<Home> {
     return AppBar(
       backgroundColor: tdYellow,
       elevation: 0,
-      title: Row(
+      title: const Row(
         children: [
           Icon(
             Icons.menu,
