@@ -1,8 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:todolist/widgets/todo_item.dart';
 
 import '../constrants/colors.dart';
 import '../model/todo.dart';
+import '../widgets/addtoappbar.dart';
 import '../widgets/searchbox.dart';
 
 class Home extends StatefulWidget {
@@ -13,14 +17,36 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final List<ToDo> todosList = ToDo.todolist();
+  final List<ToDo> todosList = [];
   final TextEditingController _todoController = TextEditingController();
   List<ToDo> _foundToDo = [];
 
   @override
   void initState() {
     super.initState();
-    _foundToDo = todosList;
+    _loadToDos();
+  }
+
+  Future<void> _loadToDos() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String? todosString = prefs.getString('todos');
+    if (todosString != null) {
+      final List<dynamic> todosJson = json.decode(todosString);
+      todosList.addAll(todosJson.map((json) => ToDo.fromMap(json)).toList());
+      setState(() {
+        _foundToDo = todosList;
+      });
+    } else {
+      setState(() {
+        _foundToDo = todosList;
+      });
+    }
+  }
+
+  Future<void> _saveToDos() async {
+    final prefs = await SharedPreferences.getInstance();
+    final String todosString = json.encode(todosList.map((todo) => todo.toMap()).toList());
+    await prefs.setString('todos', todosString);
   }
 
   @override
@@ -42,7 +68,6 @@ class _HomeState extends State<Home> {
                     padding: const EdgeInsets.only(bottom: 60),
                     children: [
                       Container(
-
                         margin: const EdgeInsets.only(top: 36, bottom: 20),
                         child: const Text(
                           'All ToDo List',
@@ -64,58 +89,9 @@ class _HomeState extends State<Home> {
           ),
           Align(
             alignment: Alignment.bottomCenter,
-            child: Row(
-              children: [
-                // Text box
-                Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(
-                      bottom: 20,
-                      right: 20,
-                      left: 20,
-                    ),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 20, vertical: 5),
-                    decoration: BoxDecoration(
-                      color: tdLBlue,
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Colors.grey,
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 10,
-                          spreadRadius: 0.0,
-                        ),
-                      ],
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: TextField(
-                      controller: _todoController,
-                      decoration: const InputDecoration(
-                        hintText: 'Add new ToDo Item',
-                        border: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                ),
-                // + button
-                Container(
-                  margin: const EdgeInsets.only(bottom: 20, right: 5),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      _addToDoItem(_todoController.text);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: tdOrange,
-                      minimumSize: const Size(50, 50),
-                      elevation: 10,
-                    ),
-                    child: const Text(
-                      '+',
-                      style: TextStyle(fontSize: 24, color: tdBlack),
-                    ),
-                  ),
-                ),
-              ],
+            child: AddToDoBar(
+              todoController: _todoController,
+              onAddToDo: _addToDoItem,
             ),
           ),
         ],
@@ -127,6 +103,7 @@ class _HomeState extends State<Home> {
   void _handleToDoChange(ToDo todo) {
     setState(() {
       todo.isDone = !todo.isDone;
+      _saveToDos();
     });
   }
 
@@ -135,6 +112,7 @@ class _HomeState extends State<Home> {
     setState(() {
       todosList.removeWhere((item) => item.id == id);
       _foundToDo = todosList;
+      _saveToDos();
     });
   }
 
@@ -145,6 +123,7 @@ class _HomeState extends State<Home> {
         todoText: todo,
       ));
       _foundToDo = todosList;
+      _saveToDos();
     });
     _todoController.clear();
   }
