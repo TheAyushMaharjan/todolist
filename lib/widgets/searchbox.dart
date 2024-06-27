@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import '../constrants/colors.dart';
 
-class searchBox extends StatelessWidget {
-  const searchBox({
-    super.key,
-  });
+class SearchBox extends StatelessWidget {
+  final Function(String) onSearch;
+
+  const SearchBox({super.key, required this.onSearch});
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +14,8 @@ class searchBox extends StatelessWidget {
         color: tdLBlue,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: const TextField(
-        decoration: InputDecoration(
+      child: TextField(
+        decoration: const InputDecoration(
           contentPadding: EdgeInsets.all(0),
           prefixIcon: Icon(
             Icons.search,
@@ -23,12 +23,13 @@ class searchBox extends StatelessWidget {
             size: 24,
           ),
           prefixIconConstraints: BoxConstraints(
-              maxHeight: 20,
-              maxWidth: 25
+            maxHeight: 20,
+            maxWidth: 25,
           ),
           border: InputBorder.none,
           hintText: 'Search',
         ),
+        onChanged: onSearch,  // Call the passed callback here
       ),
     );
   }
