@@ -8,6 +8,7 @@ import '../widgets/searchbox.dart';
 class Home extends StatefulWidget {
   const Home({super.key});
 
+
   @override
   State<Home> createState() => _HomeState();
 }
@@ -54,6 +55,7 @@ class _HomeState extends State<Home> {
             alignment: Alignment.bottomCenter,
             child: Row(
               children: [
+                //for the text box
                 Expanded(
                     child: Container(
                   margin: const EdgeInsets.only(
@@ -80,7 +82,23 @@ class _HomeState extends State<Home> {
                         ),
 
                       ),
-                ),),
+                ),
+                ),
+                //for the + button
+                Container(
+                  margin: EdgeInsets.only(bottom: 20,right: 5),
+                  child: ElevatedButton(
+                    child: Text('+',
+                      style: TextStyle(fontSize: 24,color: tdBlack)
+                    ),
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: tdOrange,
+                      minimumSize: Size(50, 50),
+                      elevation: 10,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -88,7 +106,13 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+void _handelToDoChange(ToDo todo){
+    setState(() {
 
+    });
+    todo.isDone= !todo.isDone;
+
+}
   AppBar _buildAppBar() {
     return AppBar(
       backgroundColor: tdYellow,
