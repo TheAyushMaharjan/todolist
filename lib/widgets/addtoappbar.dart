@@ -6,10 +6,10 @@ class AddToDoBar extends StatelessWidget {
   final Function(String) onAddToDo;
 
   const AddToDoBar({
-    Key? key,
+    super.key,
     required this.todoController,
     required this.onAddToDo,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
