@@ -41,9 +41,11 @@ class _HomeState extends State<Home> {
                               fontSize: 24, fontWeight: FontWeight.w500),
                         ),
                       ),
-                      for (ToDo todo in todosList)
+                      for (ToDo todoo in todosList)
                         ToDoItem(
-                          todo: todo,
+                          todo: todoo,
+                          onToDoChanged: _handelToDoChange,
+                          onDeleteItem: (){},
                         ),
                     ],
                   ),
@@ -86,16 +88,16 @@ class _HomeState extends State<Home> {
                 ),
                 //for the + button
                 Container(
-                  margin: EdgeInsets.only(bottom: 20,right: 5),
+                  margin: const EdgeInsets.only(bottom: 20,right: 5),
                   child: ElevatedButton(
-                    child: Text('+',
-                      style: TextStyle(fontSize: 24,color: tdBlack)
-                    ),
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: tdOrange,
-                      minimumSize: Size(50, 50),
+                      minimumSize: const Size(50, 50),
                       elevation: 10,
+                    ),
+                    child: const Text('+',
+                      style: TextStyle(fontSize: 24,color: tdBlack)
                     ),
                   ),
                 ),
