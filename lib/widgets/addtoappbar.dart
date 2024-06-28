@@ -49,11 +49,12 @@ class AddToDoBar extends StatelessWidget {
             onPressed: () {
               onAddToDo(todoController.text);
             },
-            style: ElevatedButton.styleFrom(
-              backgroundColor: tdOrange,
-              minimumSize: const Size(50, 50),
-              elevation: 10,
-            ),
+              style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              ),
+              padding: EdgeInsets.all(20),
+              ),
             child: const Text(
               '+',
               style: TextStyle(fontSize: 24, color: tdBlack),
