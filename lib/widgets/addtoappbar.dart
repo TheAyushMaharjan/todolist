@@ -22,6 +22,7 @@ class AddToDoBar extends StatelessWidget {
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+              height: 50,
               decoration: BoxDecoration(
                 color: tdLBlue,
                 boxShadow: const [
@@ -50,10 +51,9 @@ class AddToDoBar extends StatelessWidget {
               onAddToDo(todoController.text);
             },
               style: ElevatedButton.styleFrom(
-              shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-              ),
-              padding: EdgeInsets.all(20),
+              shape: CircleBorder(),
+                padding: EdgeInsets.all(20),
+                backgroundColor: tdOrange,
               ),
             child: const Text(
               '+',
