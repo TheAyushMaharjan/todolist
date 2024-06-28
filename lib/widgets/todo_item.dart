@@ -48,7 +48,7 @@ class ToDoItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(6),
           ),
           child: IconButton(
-            color: tdLBlue,
+            color: tdBlack,
             iconSize: 18,
             icon: const Icon(Icons.delete_outline_rounded),
             onPressed: () {
