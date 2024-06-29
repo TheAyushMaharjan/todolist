@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:todolist/screens/home.dart';
 import 'package:todolist/screens/loading.dart';
 
 void main() {
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
-    return  MaterialApp(
+    return  const MaterialApp(
       debugShowCheckedModeBanner: false,
 
         title: 'ToDo List',

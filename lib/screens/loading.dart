@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:todolist/screens/home.dart';
 class Loading extends StatefulWidget {
+  const Loading({super.key});
+
   @override
   _LoadingState createState() => _LoadingState();
 }
@@ -13,10 +15,10 @@ class _LoadingState extends State<Loading> {
   }
 
   _navigateToHome() async {
-    await Future.delayed(Duration(milliseconds: 3000), () {});
+    await Future.delayed(const Duration(milliseconds: 3000), () {});
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => Home()),
+      MaterialPageRoute(builder: (context) => const Home()),
     );
   }
 
@@ -28,8 +30,8 @@ class _LoadingState extends State<Loading> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Image.asset('assets/images/loading.png',width: 100,height: 100,),
-            SizedBox(height: 20),
-          CircularProgressIndicator(),
+            const SizedBox(height: 20),
+          const CircularProgressIndicator(),
           ],
         ),
       ),

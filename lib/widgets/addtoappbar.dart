@@ -51,8 +51,8 @@ class AddToDoBar extends StatelessWidget {
               onAddToDo(todoController.text);
             },
               style: ElevatedButton.styleFrom(
-              shape: CircleBorder(),
-                padding: EdgeInsets.all(20),
+              shape: const CircleBorder(),
+                padding: const EdgeInsets.all(20),
                 backgroundColor: tdOrange,
               ),
             child: const Text(
